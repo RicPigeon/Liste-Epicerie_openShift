@@ -63,5 +63,32 @@
 
 .addDescMenu {
 	float:right;
-	margin-top:-20px;
+    margin-top:-25px;
 }
+
+.table-repas {
+    border: 1px solid lightgrey;
+    padding:10px;
+}
+
+h3 {
+   border-bottom: 1px solid lightgrey 
+}
+
+h3:hover {
+   color:darkgrey;
+}
+
+h5 {
+    margin-left: -6px;
+    margin-top: -5px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.descMenu {
+    font-size: 16px;
+    font-family: Book Antiqua;
+}
+

@@ -15,27 +15,10 @@ app.controller('listeEpicerieCtrl',
 		$scope.finDeSemaine = ['Samedi', 'Dimanche'];
 
 		$scope.search = {};
-		$scope.listeEpicerie = [];
 
-		//$scope.listeEpicerie.$loaded().then(function(laundryData) {		 
-	        $scope.tableParams = new NgTableParams({
-		        page: 1,            // show first page
-		        count: 10,           // count per page
-		        filter: $scope.search,
-			}, {
-		        total: $scope.listeEpicerie.length, // length of data
-		        paginationMaxBlocks: 6,
-		        counts: [10,20], 
-		        getData: function ($defer, params) {
-		        	
-		        	var donneeFilter = $scope.listeEpicerie;
-		        	$scope.donneesTriezEtFiltrer = $filter('orderBy')(donneeFilter, params.orderBy());
-
-		        	params.total($scope.donneesTriezEtFiltrer.length);
-		            $defer.resolve($scope.donneesTriezEtFiltrer.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-		        }
-			});
-    	//});
+		$scope.listE = {
+			frLe : ['Carotte', 'Patate']
+		}
 	}
 
 	var index = 1;

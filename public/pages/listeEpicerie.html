@@ -1,8 +1,7 @@
 <div>
 	<div class="container margin-top-nav">
 		<div class="row">
-			<div class="col-md-12"><h3>Ma liste d'epicerie</h3></div>
-			<hr/>
+			<div class="col-md-12"><h4>Ma liste d'epicerie</h4></div>
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
@@ -18,7 +17,7 @@
 				</select>
 			</div>
 			<div class="col-xs-1">
-				<button class="form=control">
+				<button class="btn btn-sm btn-default">
 					<span class="glyphicon glyphicon-plus"></span>
 				</button>
 			</div>
@@ -28,93 +27,94 @@
 			<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Chargement en cours...
 		</div>
 
-		<div class="row">
-			<div class="col-md-12">
-				Repas de la semaine
+		<div class="col-sm-12">
+			<h3 class="pointer" ng-click="showRepas = !showRepas">Repas de la semaine</h3>
+			<div ng-show="showRepas">
+				<!-- Semaine -->
+				<div class="col-sm-6">
+					<div class="col-md-12">
+						<h4>Semaine</h4>
+					</div>
+					<div class="col-md-12 table-repas" ng-repeat="jour in semaine">
+						<div><h5>{{jour}}</h5></div>
+						<div class="descMenu">{{menu[jour].description}}</div>
+						<div>{{menu[jour].alimentListe}}</div>
+						<button 
+						    class="btn btn-default btn-sm addDescMenu"
+							ng-if="menu[jour].description == null"
+							ng-click="whereToSave(jour)"
+							data-toggle="modal" data-target="#myModal">
+							<span class="glyphicon glyphicon-plus pointer"></span>
+						</button>
+						<button 
+						 	class="btn btn-default addDescMenu"
+							ng-if="menu[jour].description != null"
+							data-toggle="modal" data-target="#myModal">
+							<span class="glyphicon glyphicon-edit"></span>
+						</button>
+					</div>
+				</div>
+
+				<!-- Fin de semaine -->
+				<div class="col-sm-6">
+					<div class="col-md-12">
+						<h4>Fin de semaine</h4>
+					</div>
+					<div class="col-md-12 table-repas" ng-repeat="jour in finDeSemaine">
+						<div><h5>{{jour}}</h5></div>
+						<div>{{menu[jour].description}}</div>
+						<div>{{menu[jour].alimentListe}}</div>
+						<button 
+						    class="btn btn-default btn-sm addDescMenu"
+							ng-if="menu[jour].description == null"
+							ng-click="whereToSave(jour)">
+							<span class="glyphicon glyphicon-plus pointer"></span>
+						</button>
+						<button 
+						 	class="btn btn-default addDescMenu"
+							ng-if="menu[jour].description != null"
+							data-toggle="modal" data-target="#myModal">
+							<span class="glyphicon glyphicon-edit"></span>
+						</button>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-12">
-				<div class="col-sm-2">
-					Semaine
-				</div>
-				<div class="col-md-2 col-sm-2 col-pour-semaine" ng-repeat="jour in semaine">
-					<div><b>{{jour}}</b></div>
-					<div>{{menu[jour].description}}</div>
-					<div>{{menu[jour].alimentListe}}</div>
-					<button 
-					    class="addDescMenu"
-						ng-if="menu[jour].description == null"
-						ng-click="whereToSave(jour)"
-						data-toggle="modal" data-target="#myModal">
-						<span class="glyphicon glyphicon-plus pointer"></span>
-					</button>
-					<button 
-					 	class="addDescMenu"
-						ng-if="menu[jour].description != null"
-						data-toggle="modal" data-target="#myModal">
-						<span class="glyphicon glyphicon-edit"></span>
-					</button>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="col-sm-2">
-					Fin de semaine
-				</div>
-				<div class="col-md-2 col-sm-2 col-pour-semaine" ng-repeat="jour in finDeSemaine">
-					<div><b>{{jour}}</b></div>
-					<div>{{menu[jour].description}}</div>
-					<div>{{menu[jour].alimentListe}}</div>
-					<button 
-					    class="addDescMenu"
-						ng-if="menu[jour].description == null"
-						ng-click="whereToSave(jour)">
-						<span class="glyphicon glyphicon-plus pointer"></span>
-					</button>
-					<button 
-					 	class="addDescMenu"
-						ng-if="menu[jour].description != null"
-						data-toggle="modal" data-target="#myModal">
-						<span class="glyphicon glyphicon-edit"></span>
-					</button>
-				</div>
-			</div>
+
 		</div>
-	</div>
 
-			<br/>
-			<br/>
-
-
-			<div class="col-md-6">
-				Liste d'epicerie pour la semaine
-			</div>
-
-
-			<br/>
-
-
-
-
-
-		<div class="row" ng-show="dataLoaded">
-			<div class="col-md-12 table-col">			
-				<table class="table table-hover" ng-table="tableParams">
-						<tr ng-repeat="aliment in $data">
-							<td title="'Aliment'" sortable="'nomPrenom'">{{aliment.nom}}</td>
-							<td>
-								<span ng-click="consulter(forfait.numeroCertificat)" class="glyphicon glyphicon-chevron-right goTo pointer"></span>
-							</td>
-						</tr>
-				</table>
+		<div class="col-sm-12">
+			<h3 class="pointer" ng-click="showListe = !showListe">Liste d'epicerie pour la semaine</h3>
+			<div ng-show="showListe" class="col-md-12 table-col">			
+				<div class="row">
+					<div class="col-md-12">
+						Fruits et légumes
+					</div>
+					<div class="col-md-12" ng-repeat="fruitLegume in listE.frLe">
+						<div class="col-sm-10">
+							{{fruitLegume}}
+						</div>
+						<div class="col-sm-2">
+							<button class="btn btn-default">
+								<i class="glyphicon glyphicon-edit"></i>
+							</button>
+							<button class="btn btn-default">
+								<i class="glyphicon glyphicon-trash"></i>
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<toaster-container toaster-options="{'time-out': 2000}"></toaster-container>
-	<!-- Modal -->
-	<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
+
+<toaster-container toaster-options="{'time-out': 2000}"></toaster-container>
+
+	<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -122,7 +122,6 @@
         <h4 class="modal-title">Ajouter un repas de semaine</h4>
       </div>
       <div class="modal-body">
-      	{{leJour}}
         	Nom de repas : <input class="form-control" type="text" ng-model="menu[leJour].description"></input>
         	Liste des ingrédient : <input class="form-control"  type="text" ng-model="ingredient"></input>
       </div>
@@ -131,6 +130,5 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
       </div>
     </div>
-
   </div>
 </div>

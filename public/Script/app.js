@@ -11,10 +11,6 @@ app.controller('AppCtrl',
 		controlleur: 'Autre'
 	};
 
-	$scope.singleton = {
-		actuel: false
-	};
-
 	$scope.rafraichir = function(){
 		window.location.reload(true);
 	}
